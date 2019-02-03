@@ -80,6 +80,11 @@ DB_NAME = os.environ.get('DB_NAME')
 DB_USER = os.environ.get('DB_USER')
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
 
+ES_SCHEME = os.environ.get('ES_SCHEME')
+ES_HOST = os.environ.get('ES_HOST')
+ES_PORT = os.environ.get('ES_PORT')
+ES_INDEX = os.environ.get('ES_INDEX')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
