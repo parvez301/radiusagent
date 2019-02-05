@@ -1,1 +1,1 @@
-web: gunicorn bootcamp.wsgi --log-file -s
+web: gunicorn radiusagent.wsgi --log-file -s
