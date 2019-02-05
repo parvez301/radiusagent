@@ -1,1 +1,1 @@
-web: gunicorn radiusagent.wsgi --log-file -s
+web: python manage.py runserver
