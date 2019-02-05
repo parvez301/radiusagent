@@ -26,6 +26,7 @@ class PropertyDetail(models.Model):
 
     # Method for indexing the model1
     def indexing(self):
+        #PropertyIndex.init(index=ES_INDEX)
         obj = PropertyIndex(
           meta={'id': self.lat},
             location={

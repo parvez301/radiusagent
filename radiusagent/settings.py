@@ -25,7 +25,7 @@ SECRET_KEY = 'e3_0ojjxe8!+k*v+fq^2&qbl#^4-gy5*(h099^1&jj*m46b$1%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,6 +84,8 @@ ES_SCHEME = os.environ.get('ES_SCHEME')
 ES_HOST = os.environ.get('ES_HOST')
 ES_PORT = os.environ.get('ES_PORT')
 ES_INDEX = os.environ.get('ES_INDEX')
+ES_USER = os.environ.get('ES_USER')
+ES_PASSWORD = os.environ.get('ES_PASSWORD')
 
 DATABASES = {
     'default': {
@@ -133,7 +135,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)

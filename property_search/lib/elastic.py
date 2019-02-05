@@ -9,7 +9,10 @@ from property_search.models import *
 from property_search.const import ES_MAX_RETRIES, RETRY_ON_TIMEOUT, ES_INDEX
 
 # Create a connection to ElasticSearch
-connections.create_connection()
+connections.create_connection(hosts=[{'host': settings.ES_HOST, 'port': int(settings.ES_PORT), 'http_auth':(settings.ES_USER,settings.ES_PASSWORD)}],
+                              use_ssl=False, verify_certs=True, scheme=settings.ES_SCHEME,
+                              connection_class=RequestsHttpConnection,
+                              max_retries=ES_MAX_RETRIES, retry_on_timeout=RETRY_ON_TIMEOUT)
 
 # ElasticSearch "model" mapping out what fields to index
 class PropertyIndex(DocType):
@@ -24,6 +27,8 @@ class PropertyIndex(DocType):
         index = ES_INDEX
         type = 'doc'
 
+#PropertyIndex.init(index=ES_INDEX)
+
 # Bulk indexing function, run in shell
 def bulk_indexing():
     PropertyIndex.init(index=ES_INDEX)
@@ -37,12 +42,12 @@ def get_elastic_connection():
         es - ElasticClient Object
     """
     if settings.ES_SCHEME == 'http':
-        es = Elasticsearch(hosts=[{'host': settings.ES_HOST, 'port': int(settings.ES_PORT)}],
+        es = Elasticsearch(hosts=[{'host': settings.ES_HOST, 'port': int(settings.ES_PORT), 'http_auth':(settings.ES_USER,settings.ES_PASSWORD)}],
                             use_ssl=False, verify_certs=False, scheme=settings.ES_SCHEME,
                             connection_class=RequestsHttpConnection,
                             max_retries=ES_MAX_RETRIES, retry_on_timeout=RETRY_ON_TIMEOUT)
     else:
-        es = Elasticsearch(hosts=[{'host': settings.ES_HOST, 'port': int(settings.ES_PORT)}],
+        es = Elasticsearch(hosts=[{'host': settings.ES_HOST, 'port': int(settings.ES_PORT), 'http_auth':(settings.ES_USER,settings.ES_PASSWORD)}],
                             use_ssl=False, verify_certs=True, scheme=settings.ES_SCHEME,
                             connection_class=RequestsHttpConnection,
                             max_retries=ES_MAX_RETRIES, retry_on_timeout=RETRY_ON_TIMEOUT)
