@@ -14,7 +14,7 @@ array of JSON Objects with following keys:
 property_name, price, no_of_bedrooms, no_of_bathrooms,city,match_score,distance_from_user
 
 ## Tech Stack
-Backend - python, django, postgres, elasticsearch, requsts library.
+Backend - python3, django, postgres, elasticsearch, requsts library.
 FrontEnd - Angular5
 
 ## Explaination of logic
@@ -24,3 +24,8 @@ FrontEnd - Angular5
 
 3. I'm using geopoint datatype to query lat lon in elasticsearch, check get_elastic_query method utils.py.
 
+## How To Run after cloning this repository
+1. pip3 install requirements.txt
+2. install postgres and elastic on your machine
+3. check .env file and set the environment variables
+4. python manage.py runserver
