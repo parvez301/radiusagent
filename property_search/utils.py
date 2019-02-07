@@ -10,14 +10,14 @@ from property_search.const import ES_INDEX
 
 class PropertySearchBackendService:
     def __init__(self, data):
-        self.lat = data.get('lat', 40.12)
-        self.lon = data.get('lon', -71.34)
-        self.min_price = data.get('min_budget', 1000)
-        self.max_price = data.get('max_budget', 2000)
-        self.min_bedrooms = data.get('min_bedrooms', 1)
-        self.max_bedrooms = data.get('max_bedrooms', 2)
-        self.min_bathrooms = data.get('min_bathrooms', 0)
-        self.max_bathrooms = data.get('max_bathrooms', 1)
+        self.lat = data.get('lat')
+        self.lon = data.get('lon')
+        self.min_price = data.get('min_budget')
+        self.max_price = data.get('max_budget')
+        self.min_bedrooms = data.get('min_bedrooms')
+        self.max_bedrooms = data.get('max_bedrooms')
+        self.min_bathrooms = data.get('min_bathrooms')
+        self.max_bathrooms = data.get('max_bathrooms')
 
     def search_properties(self, data):
         """Util method to search properties
